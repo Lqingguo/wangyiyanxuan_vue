@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" href="./static/css/reset.css">
+    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no viewport-fit=cover">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_990549_r6ox9oafg7.css">
     <title>网易严选</title>
   </head>
   <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
@@ -19,6 +20,12 @@
   </script>
   <body>
     <div id="app"></div>
-
   </body>
 </html>
+<script>
+  (function (width) {
+    const fontSize = (window.innerWidth || document.documentElement.clientWidth) / 10  + "px";
+    document.documentElement.style.fontSize = fontSize;
+    document.body.style.fontSize = "24px";
+  })(750)
+</script>
