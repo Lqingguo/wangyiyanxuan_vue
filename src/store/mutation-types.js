@@ -11,3 +11,6 @@ export const GETCURRENTCATE = 'getcurrentcate'
 //第三页
 export const NAVGEN ='navgen'
 export const NAVCON = 'navcon'
+export const SAVEXPERTLIST = 'savexpertlist'
+//search
+export const GETSEARCH = 'getsearch'

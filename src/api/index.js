@@ -15,3 +15,7 @@ export const reqgeneral =() =>ajax('/api/topic/v1/find/getTabs.json');
 //识物推荐默认
 // 实物推荐默认： http://m.you.163.com/topic/v1/find/recManual.json
 export const reqmoren = () => ajax('/api/topic/v1/find/recManual.json')
+//识物达人数据    /topic/v1/find/getTabData.json?page=1&size=5&tabId=4
+export const reqexpertlist=({page,size,tabId})  =>ajax('/api/topic/v1/find/getTabData.json',{page,size,tabId})
+//搜索
+export  const reqSearch =(keywordPrefix) =>ajax('/api/xhr/search/searchAutoComplete.json',keywordPrefix,'POST')

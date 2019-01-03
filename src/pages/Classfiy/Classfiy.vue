@@ -14,10 +14,10 @@
           </li>
         </ul>
       </div>
-      <div class="right">
+      <div class="right" v-if="listmessages.length">
         <div class="rightwarp">
           <div class="rightT">
-            <img :src="listmessages[cateindex].bannerUrl" alt="">
+            <img  :src="listmessages[cateindex].bannerUrl" alt="">
           </div>
           <div class="rightB">
             <ul class="rightlist">
@@ -54,13 +54,11 @@
     computed:{
       ...mapState({
         listmessages:state=>state.reqprefect.listmessages,
-        currentCategory:state=>state.reqprefect.currentCategory
       })
     },
     methods:{
       updatacateindex(index){
         this.cateindex = index
-        console.log(index,this.cateindex)
       }
     }
   }
@@ -103,11 +101,13 @@
         .left
           float left
           width 2.16rem
-          height: 1050px
+          height: 15.5rem
           overflow hidden
           position fixed
+
           border-right 1px solid #ccc
           ul
+            padding-bottom 0.3rem
             width 100%
             li
               display inline-block

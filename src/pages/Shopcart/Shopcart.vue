@@ -15,7 +15,7 @@
           <img src="//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noCart-a8fe3f12e5.png" alt="">
         </div>
       </div>
-      <div class="btn1">登录</div>
+      <div class="btn1" @click="$router.replace('/profil')">登录</div>
     </div>
   </div>
 </template>

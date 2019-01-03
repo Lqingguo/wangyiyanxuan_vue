@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav" v-if="$route.path !== '/profil'">
+  <nav id="nav" v-if="$route.meta.showFooter">
     <div @click="$router.replace('/msite')" :class="{active:isCurrent('/msite')}">
       <i class="iconfont icon-shouye" />
       <span>首页</span>
@@ -34,6 +34,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import '../../common/mixins.styl'
 #nav
+  border-top 1px solid #ccc
   background #fff
   z-index 10
   border-top 1px solid #eee

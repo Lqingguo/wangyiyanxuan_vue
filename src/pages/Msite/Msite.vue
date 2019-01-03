@@ -5,14 +5,14 @@
       <div class="logo">
       <img src="//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-11d65342f9.png" alt="">
       </div>
-      <div class="search">
+      <div class="search" @click="$router.replace('/search')">
         <i class="iconfont icon-search"/>
         <span>搜索商品，共19966件好物</span>
       </div>
-      <div class="login">登录</div>
+      <div class="login" @click="$router.replace('/profil')">登录</div>
     </div>
     <div class="nav_list">
-      <ul class="ullist">
+      <ul class="ullist" v-if="msitelist.length">
         <!--active-->
         <li v-for="(nav,index) in msitelist" :class="{active:index === showindex}" @click="updataindex(index)">
           {{nav.name}}
@@ -22,7 +22,7 @@
     </div>
     <div class="swiper-container">
       <div class="swiper-wrapper" >
-        <div class="swiper-slide"  v-for="(item,index) in slideshow" :key="index">
+        <div class="swiper-slide" v-if="slideshow.length"  v-for="(item,index) in slideshow" :key="index">
           <img :src="item.picUrl" alt="index">
         </div>
       </div>
@@ -43,7 +43,7 @@
     </ul>
     <div class="contnet">
       <ul>
-        <li v-for="(item,index) in navlist.kingKongList" :key="index">
+        <li v-if="navlist.kingKongList.length" v-for="(item,index) in navlist.kingKongList" :key="index">
           <img :src="item.picUrl" alt="">
           <span>{{item.text}}</span>
         </li>
@@ -168,8 +168,8 @@
           float left
           width 330px
           background #eee
-          margin-right 10px
-          margin-left 10px
+          margin-right 30px
+          margin-left 30px
           position relative
           span
             display inline-block
@@ -186,7 +186,7 @@
           line-height .53333rem
           border 1px solid red
           border-radius .10667rem
-          margin-top 10px
+          margin-top 8px
 
       .nav_list
         background #fff

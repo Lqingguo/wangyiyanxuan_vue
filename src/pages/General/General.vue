@@ -1,17 +1,17 @@
 <template>
   <div class="general">
     <div class="genheader">
-      <div class="icon1">
+      <div class="icon1" @click="$router.replace('/msite')">
         <i class="iconfont  icon-shouye"/>
       </div>
       <div class="titltwarp">
         <span :class="{active:isactive}" @click="updataActive1">发现</span>
         <span @click="updataActive2" :class="{active:!isactive}">甄选家</span>
       </div>
-      <div class="icon2">
+      <div class="icon2" @click="$router.replace('/search')">
         <i class="iconfont icon-search"/>
       </div>
-      <div class="icon3">
+      <div class="icon3" @click="$router.replace('/shopcart')">
         <i class="iconfont icon-gouwuche"/>
       </div>
     </div>
