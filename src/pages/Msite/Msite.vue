@@ -191,9 +191,11 @@
       .nav_list
         background #fff
         height 53px
-        width 99%
+        width 70%
+        overflow hidden
         display flex
         .ullist
+          padding-right 100px
           margin-bottom 10px
           display flex
           li

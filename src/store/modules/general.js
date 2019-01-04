@@ -6,7 +6,8 @@ import {
   reqgeneral,
   reqmoren,
   reqexpertlist, // 达人
-  reqSearch   //搜索
+  reqSearch ,  //搜索
+
 }from '../../api/index'
 import {
   NAVGEN,
@@ -42,7 +43,9 @@ const actions = {
    const result = await reqSearch({keywordPrefix})
     const items = result.data
     commit(GETSEARCH,{items})
-  }
+  },
+  //发送登录验证码
+  //发送登录请求
 }
 const mutations = {
     [NAVGEN](state,{navgeneral}){

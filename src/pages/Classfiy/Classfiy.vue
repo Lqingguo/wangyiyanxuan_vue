@@ -103,7 +103,6 @@
           height: 15.5rem
           overflow hidden
           position fixed
-
           border-right 1px solid #ccc
           ul
             padding-bottom 0.3rem

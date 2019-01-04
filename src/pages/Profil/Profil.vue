@@ -23,8 +23,8 @@
             <input type="text" placeholder="请输入手机号"  v-model="phone" @keyup.enter="isphone">
           </div>
           <div class="input2">
-            <input type="text" placeholder="请输入短信验证码">
-            <div class="input2w" :class="{isrightphone:titles}">获取验证码</div>
+            <input type="text" placeholder="请输入短信验证码" v-model="code">
+            <div class="input2w" :class="{isrightphone:titles}" @click="reqajax">获取验证码</div>
           </div>
           <div class="titleft">
             遇到问题？
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="btnwarp">
-          <div class="btn1">
+          <div class="btn1" @click="gologin">
             <span>登录</span>
           </div>
           <div class="btn2" @click="isShow =!isShow">
@@ -48,10 +48,10 @@
         </div>
         <div class="inputwarp">
           <div class="input1">
-            <input type="text" placeholder="请输入邮箱账号" >
+            <input type="text" placeholder="请输入邮箱账号" v-model="emails" >
           </div>
           <div class="input2">
-            <input type="text" placeholder="请输入密码">
+            <input type="text" placeholder="请输入密码" v-model="password">
           </div>
           <div class="titleft">
             注册账号
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="btnwarp">
-          <div class="btn1">
+          <div class="btn1" @click="isRightEmail">
             <span>登录</span>
           </div>
           <div class="btn2" @click="isShow =!isShow">
@@ -72,26 +72,57 @@
   </div>
 </template>
 <script>
+  import {reqlogin,reqnote} from  '../../api/index'
+  import {Toast} from 'mint-ui';
   export default {
     data(){
       return{
         isShow:true,
         phone:''  , //手机号
-        titles:false
+        code:''  ,//输入的验证码
+        emails:'' , //输入的邮箱
+        password:''  //输入的密码
       }
     },
-      watch:{
-        phone(){
-          if(/^1\d{10}/.test(this.phone)){
-            this.titles = true
-          }else {
-            this.titles = false
-          }
+    methods:{
+      async reqajax(){
+       const result = await reqnote(this.phone)
+        if(result.code === 0){
+          Toast('短信已发送')
         }
+
+      },
+     async gologin(){
+       if(!/^1\d{10}/.test(this.phone)){
+         Toast('请输入格式正确的手机号')
+       }else{
+         if(!/^\d{6}/.test(this.code)){
+           Toast('请输入格式正确的验证码')
+         }else{
+           const result =await reqlogin(this.phone,this.code);
+           if(result.code === 0){
+             this.$router.replace('/msite')
+           }
+         }
+       }
+      },
+      isRightEmail(){
+       let ema =/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/
+       if(!ema.test(this.emails)){
+         Toast({
+           message:'邮箱格式错误',
+         })
+       }else {
+         if(!/^(?![0-9]+$)(?![a-zA-Z]+$)(?!([^(0-9a-zA-Z)]|[\(\)])+$)([^(0-9a-zA-Z)]|[\(\)]|[a-zA-Z]|[0-9]){6,}$/.test(this.password)){
+           Toast('密码必须为六位数以上的数字字母组合')
+         }
+       }
       }
+    }
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+
 .prowarp
   .genheader
     background #fff
@@ -216,5 +247,4 @@
           font-size .45rem
         i
           font-size .4rem
-
 </style>

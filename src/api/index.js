@@ -19,3 +19,7 @@ export const reqmoren = () => ajax('/api/topic/v1/find/recManual.json')
 export const reqexpertlist=({page,size,tabId})  =>ajax('/api/topic/v1/find/getTabData.json',{page,size,tabId})
 //搜索
 export  const reqSearch =(keywordPrefix) =>ajax('/api/xhr/search/searchAutoComplete.json',keywordPrefix)
+//发送短信验证码
+export  const reqnote = (phone) => ajax('http://localhost:5000/sendcode',{phone})
+//发送登录请求
+export const reqlogin = ({phone,code})=> ajax('http://localhost:5000/login_sms',{phone,code},'POST');

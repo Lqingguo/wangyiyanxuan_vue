@@ -35,7 +35,6 @@
         this.$router.replace('/general/selection')
       }
     },
-
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">

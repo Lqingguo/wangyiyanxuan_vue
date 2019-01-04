@@ -1,21 +1,21 @@
 <template>
   <div class="list1">
-    <div >
+    <div style="margin-top: 141px">
       <div v-for="(arr,index) in expertlist" :key="index">
-      <div class="item" v-if="arr.style === 1">
-        <div class="u-name">
-          <div class="ava">
-            <img :src="arr.avatar" alt="">
+        <div class="item" v-if="arr.style === 1">
+          <div class="u-name">
+            <div class="ava">
+              <img :src="arr.avatar" alt="">
+            </div>
+            <span class="xuanmei">{{arr.nickname}}</span>
           </div>
-          <span class="xuanmei">{{arr.nickname}}</span>
+          <div class="title">{{arr.subTitle}}</div>
+          <div class="imwarp">
+            <img style="width: 100%;height: 100%" :src="arr.picUrl" alt="">
+          </div>
+          <span class="look">{{arr.readCount}}人看过</span>
         </div>
-        <div class="title">{{arr.subTitle}}</div>
-        <div class="imwarp">
-          <img style="width: 100%;height: 100%" :src="arr.picUrl" alt="">
-        </div>
-        <span class="look">{{arr.readCount}}人看过</span>
-      </div>
-      <div class="items2" v-if="arr.style === 2" >
+        <div class="items2" v-if="arr.style === 2" >
         <div class="info">
           <div class="u-name1">
             <div class="img2warp">
@@ -33,7 +33,7 @@
           <img :src="arr.picUrl" alt="aa">
         </div>
       </div>
-    </div>
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@
       }
     },
     mounted(){
-      this.$store.dispatch('getexpertlist',{page:1,size:5,tabId:4})
+      this.$store.dispatch('getexpertlist',{page:1,size:5,tabId:4});
       this._instail();
     },
     computed:{
@@ -62,23 +62,23 @@
           this.BScroll = new BScroll('.list1',{
             click:true,
             pullUpLoad: {
-              threshold:800
-            }
+              threshold:1000
+            },
+            momentumLimitTime:1
           })
         }else {
             this.BScroll.on('pullingUp',()=>{
                 if(this.istrue){
-                  this.istrue = false
-                  setTimeout(()=>{
-                    this.ispage = this.ispage +1
-                    this.$store.dispatch('getexpertlist',{page:this.ispage+1,size:5,tabId:4});
-                    this.BScroll.finishPullUp()
-                    this.istrue = true
-                  },1000)
+            this.istrue = false;
+            setTimeout(()=>{
+              this.ispage = this.ispage +1;
+              this.$store.dispatch('getexpertlist',{page:this.ispage+1,size:5,tabId:4});
+              this.BScroll.finishPullUp();
+              this.istrue = true
+            },1000)
                 }
-
               }
-            )
+            );
           this.BScroll.refresh()
         }
       }
