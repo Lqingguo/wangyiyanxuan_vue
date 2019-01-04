@@ -51,6 +51,7 @@
         border-bottom 1px solid  #d9d9d9
         line-height .9rem
         display flex
+        z-index 10
         height .9rem
         top 84px
         position fixed

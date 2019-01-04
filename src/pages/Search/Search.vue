@@ -3,12 +3,17 @@
     <div class="searheader">
         <div class="searleft">
           <i class="iconfont icon-search"/>
-          <input type="text" class="inputtext" placeholder="严选开年特惠 最高直降1399元" v-model="searchBox">
+          <input type="text"  class="inputtext" placeholder="严选开年特惠 最高直降1399元" v-model="searchBox">
         </div>
-        <div class="searright" @click="$router.replace('/msite')">
+        <div class="searright" @click="replaee">
           取消
         </div>
     </div>
+    <ul class="inputwarp" v-if="items.length">
+      <li v-for="(item,index) in items" :key="index">
+        {{item}}
+      </li>
+    </ul>
     <div class="searcontent">
       <div class="seartitle">热门搜索</div>
       <ul class="searlist">
@@ -25,20 +30,38 @@
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex'
   export default {
       data(){
         return{
-          searchBox:''
+          searchBox:'',
+          flag : true
         }
       },
       watch:{
-        searchBox(value){
-            if(this.searchBox.length){
-              let arra = this.searchBox
-              this.$store.dispatch('getSearchvalue',{keywordPrefix:arra})
+        searchBox(){
+          //函数防抖
+            if(this.flag){
+              this.flag = false
+              setTimeout(()=>{
+                let arra = this.searchBox
+                this.$store.dispatch('getSearchvalue',{keywordPrefix:arra})
+                this.flag = true
+              },100)
             }
         }
-      }
+      },
+    computed:{
+      ...mapState({
+        items: state=> state.general.items
+      })
+    },
+    methods:{
+        replaee(){
+          this.$router.replace('/msite')
+          this.searchBox = ''
+        }
+    }
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
@@ -94,5 +117,23 @@
             border-radius 10px
             margin-bottom 20px
             padding 0 20px
+
+      .inputwarp
+        box-sizing border-box
+        position absolute
+        left 0px
+        top 74px
+        bottom 0px
+        right 0px
+        width 100%
+        background #f4f4f4
+        li
+          height 1.2rem
+          font-size .3773rem
+          border-bottom 2px solid #ccc
+          background #fff
+          padding-left 40px
+          line-height 1.6rem
+
 
 </style>

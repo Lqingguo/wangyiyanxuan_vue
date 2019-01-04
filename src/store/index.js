@@ -14,7 +14,7 @@ export default new Vuex.Store({
   modules:{
     msite,
     reqprefect,
-    general
+    general,
   },
   state
 })

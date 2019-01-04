@@ -1,7 +1,7 @@
 <template>
   <div id="classfiy">
     <div class="classfiyh">
-      <div class="searchfiyh">
+      <div class="searchfiyh" @click="$router.replace('/search')">
         <i class="iconfont icon-search"/>
         <span>搜索商品，共1008件好物</span>
       </div>
@@ -49,7 +49,6 @@
           click: true
         })
       });
-      this.$store.dispatch('getcurrentcate')
     },
     computed:{
       ...mapState({

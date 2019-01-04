@@ -18,4 +18,4 @@ export const reqmoren = () => ajax('/api/topic/v1/find/recManual.json')
 //识物达人数据    /topic/v1/find/getTabData.json?page=1&size=5&tabId=4
 export const reqexpertlist=({page,size,tabId})  =>ajax('/api/topic/v1/find/getTabData.json',{page,size,tabId})
 //搜索
-export  const reqSearch =(keywordPrefix) =>ajax('/api/xhr/search/searchAutoComplete.json',keywordPrefix,'POST')
+export  const reqSearch =(keywordPrefix) =>ajax('/api/xhr/search/searchAutoComplete.json',keywordPrefix)

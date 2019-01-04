@@ -1,6 +1,7 @@
 <template>
   <div class="list1">
-    <div v-for="(arr,index) in expertlist" :key="index">
+    <div >
+      <div v-for="(arr,index) in expertlist" :key="index">
       <div class="item" v-if="arr.style === 1">
         <div class="u-name">
           <div class="ava">
@@ -33,6 +34,7 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </template>
 <script>
@@ -41,20 +43,59 @@
   export default {
     data(){
       return{
-        page:1
+        ispage:0,
+        istrue:true
       }
     },
     mounted(){
-      this.$store.dispatch('getexpertlist',{page:11,size:5,tabId:4})
+      this.$store.dispatch('getexpertlist',{page:1,size:5,tabId:4})
+      this._instail();
     },
     computed:{
       ...mapState({
         expertlist:state=>state.general.expertlist
       })
     },
+    methods:{
+      _instail(){
+        if(!this.BScroll){
+          this.BScroll = new BScroll('.list1',{
+            click:true,
+            pullUpLoad: {
+              threshold:800
+            }
+          })
+        }else {
+            this.BScroll.on('pullingUp',()=>{
+                if(this.istrue){
+                  this.istrue = false
+                  setTimeout(()=>{
+                    this.ispage = this.ispage +1
+                    this.$store.dispatch('getexpertlist',{page:this.ispage+1,size:5,tabId:4});
+                    this.BScroll.finishPullUp()
+                    this.istrue = true
+                  },1000)
+                }
+
+              }
+            )
+          this.BScroll.refresh()
+        }
+      }
+    },
+    watch:{
+      expertlist(){
+        this._instail();
+      }
+    }
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+.list1
+  position absolute
+  left 0px
+  width 100%
+  height 100%
   .items2
     display flex
     box-sizing border-box

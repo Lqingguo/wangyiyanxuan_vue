@@ -33,16 +33,14 @@ const actions = {
      fn && fn()
   },
    async getexpertlist({commit},{page,size,tabId}){
-    const result = await reqexpertlist({page,size,tabId});
+    const result = await reqexpertlist({page:page+1,size,tabId});
     const expertlist = result.data.result
     commit(SAVEXPERTLIST,{expertlist})
    },
   //搜索
   async getSearchvalue({commit},{keywordPrefix}){
    const result = await reqSearch({keywordPrefix})
-    console.log(result)
     const items = result.data
-    console.log(items)
     commit(GETSEARCH,{items})
   }
 }
@@ -54,7 +52,7 @@ const mutations = {
       state.navcontent = navcontent
     },
     [SAVEXPERTLIST](state,{expertlist}){
-      state.expertlist = expertlist
+      expertlist.forEach(item=> state.expertlist.push(item))
     },
   //搜索
     [GETSEARCH](state,{items}){
