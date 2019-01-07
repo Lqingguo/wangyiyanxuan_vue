@@ -17,13 +17,13 @@
       <div class="right" v-if="listmessages.length">
         <div class="rightwarp">
           <div class="rightT">
-            <img  :src="listmessages[cateindex].bannerUrl" alt="">
+            <img  v-lazy="listmessages[cateindex].bannerUrl" alt="">
           </div>
           <div class="rightB">
             <ul class="rightlist">
               <li v-for="(cata,index) in listmessages[cateindex].subCateList">
                 <div class="imgdi">
-                  <img :src="cata.wapBannerUrl" alt="">
+                  <img v-lazy="cata.wapBannerUrl" alt="">
                 </div>
                 <div>{{cata.name}}</div>
               </li>

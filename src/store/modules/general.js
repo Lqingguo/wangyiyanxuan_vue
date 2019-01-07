@@ -7,19 +7,26 @@ import {
   reqmoren,
   reqexpertlist, // 达人
   reqSearch ,  //搜索
-
+  reqboxing,   //晒单
+  reqthree   //晒单下边那三个
 }from '../../api/index'
 import {
   NAVGEN,
   NAVCON,
   SAVEXPERTLIST,
-  GETSEARCH
+  GETSEARCH,
+  GETBOXINGS,
+  GETTHREES,
+  GETHOMES
 } from '../mutation-types'
 const state = {
   navgeneral:[], //第三页导航,
   navcontent:[], //第三页推荐
   expertlist :[] ,//第三页达人
-  items:[] //搜索列表
+  items:[], //搜索列表
+  boxs:{} ,  //晒图
+  threes:{} ,  //晒单下边三个
+  homes :{}   // HOME
 }
 const actions = {
  async getnavgeneral({commit}){
@@ -44,8 +51,24 @@ const actions = {
     const items = result.data
     commit(GETSEARCH,{items})
   },
-  //发送登录验证码
-  //发送登录请求
+  //晒单
+  async getboxing({commit}){
+   const result = await reqboxing();
+   const boxs = result.data
+    commit(GETBOXINGS,{boxs})
+  },
+  //晒单下边三个
+  async getbothree ({commit},{page,size,type}){
+   const result = await reqthree({page,size,type})
+    const threes = result.data
+    commit(GETTHREES,{threes})
+  },
+  //HOme
+  async gethome ({commit},{page,size,tabId}){
+   const result = await reqexpertlist ({page,size,tabId})
+    const homes = result.data
+    commit(GETHOMES,{homes})
+  }
 }
 const mutations = {
     [NAVGEN](state,{navgeneral}){
@@ -60,6 +83,18 @@ const mutations = {
   //搜索
     [GETSEARCH](state,{items}){
       state.items = items
+    },
+  //晒物
+    [GETBOXINGS](state,{boxs}){
+      state.boxs = boxs
+    },
+  //晒物下边三个
+    [GETTHREES](state,{threes}){
+      state.threes = threes
+    },
+  //HOME
+    [GETHOMES] (state,{homes}){
+      state.homes = homes
     }
 }
 const getters = {

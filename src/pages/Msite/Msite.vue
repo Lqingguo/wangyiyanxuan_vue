@@ -23,7 +23,7 @@
     <div class="swiper-container">
       <div class="swiper-wrapper" >
         <div class="swiper-slide" v-if="slideshow.length"  v-for="(item,index) in slideshow" :key="index">
-          <img :src="item.picUrl" alt="index">
+          <img v-lazy="item.picUrl" alt="index">
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="contnet">
       <ul>
         <li v-if="navlist.kingKongList.length" v-for="(item,index) in navlist.kingKongList" :key="index">
-          <img :src="item.picUrl" alt="">
+          <img v-lazy="item.picUrl" alt="">
           <span>{{item.text}}</span>
         </li>
       </ul>

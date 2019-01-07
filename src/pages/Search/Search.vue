@@ -9,7 +9,7 @@
           取消
         </div>
     </div>
-    <ul class="inputwarp" v-if="items.length">
+    <ul class="inputwarp" v-if="items.length>0">
       <li v-for="(item,index) in items" :key="index">
         {{item}}
       </li>
@@ -59,6 +59,7 @@
     methods:{
         replaee(){
           this.$router.replace('/msite')
+
           this.searchBox = ''
         }
     }

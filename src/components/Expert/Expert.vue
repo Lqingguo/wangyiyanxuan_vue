@@ -1,11 +1,11 @@
 <template>
   <div class="list1">
-    <div style="margin-top: 141px">
+    <div>
       <div v-for="(arr,index) in expertlist" :key="index">
         <div class="item" v-if="arr.style === 1">
           <div class="u-name">
             <div class="ava">
-              <img :src="arr.avatar" alt="">
+              <img v-lazy="arr.avatar" alt="">
             </div>
             <span class="xuanmei">{{arr.nickname}}</span>
           </div>
@@ -19,7 +19,7 @@
         <div class="info">
           <div class="u-name1">
             <div class="img2warp">
-              <img :src="arr.avatar" alt="">
+              <img v-lazy="arr.avatar" alt="">
             </div>
             <span>{{arr.nickname}}</span>
           </div>
@@ -30,7 +30,7 @@
           <div class="look2">{{arr.readCount}}人看过</div>
         </div>
         <div class="leftimg">
-          <img :src="arr.picUrl" alt="aa">
+          <img v-lazy="arr.picUrl" alt="aa">
         </div>
       </div>
       </div>
@@ -64,7 +64,8 @@
             pullUpLoad: {
               threshold:1000
             },
-            momentumLimitTime:1
+//            momentumLimitTime:200,
+            momentum:false
           })
         }else {
             this.BScroll.on('pullingUp',()=>{

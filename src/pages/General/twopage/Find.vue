@@ -5,8 +5,10 @@
       <li @click="updataNumber(index)" :class="{active:isnumber === index}" v-for="(item,index) in navgeneral" :key="index">{{item.tabName}}</li>
     </ul>
     <div class="contenti">
-      <Recommend v-if="isnumber === 0" :toarrlist="toarrlist"/>
+      <Recommend v-if="isnumber === 0" />
       <Expert v-if="isnumber === 1"/>
+      <Upboxing v-if="isnumber === 3"/>
+      <Home v-if="isnumber === 4"/>
     </div>
   </div>
 </template>
@@ -20,7 +22,6 @@
     }
     ,
     mounted(){
-
       this.$store.dispatch('getnavgeneral');
       this.$store.dispatch('getnavcontent')
     },
@@ -30,7 +31,7 @@
         navcontent:state=>state.general.getnavcontent,
 
       }),
-        ...mapGetters(['toarrlist'])
+
     },
     methods:{
       updataNumber(index){

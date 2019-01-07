@@ -12,5 +12,10 @@ export const GETCURRENTCATE = 'getcurrentcate'
 export const NAVGEN ='navgen'
 export const NAVCON = 'navcon'
 export const SAVEXPERTLIST = 'savexpertlist'
+export const GETBOXINGS = 'getboxings'
+export const GETTHREES = 'getthrees'
+export const GETHOMES = 'gethomes'
 //search
 export const GETSEARCH = 'getsearch'
+
+

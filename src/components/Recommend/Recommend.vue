@@ -4,7 +4,7 @@
     <div class="item" v-if="arr.style === 1">
       <div class="u-name">
         <div class="ava">
-          <img :src="arr.avatar" alt="">
+          <img v-lazy="arr.avatar" alt="">
         </div>
         <span class="xuanmei">{{arr.nickname}}</span>
       </div>
@@ -18,7 +18,7 @@
       <div class="info">
         <div class="u-name1">
           <div class="img2warp">
-            <img :src="arr.avatar" alt="">
+            <img v-lazy="arr.avatar" alt="">
           </div>
           <span>{{arr.nickname}}</span>
         </div>
@@ -29,7 +29,7 @@
         <div class="look2">{{arr.readCount}}人看过</div>
       </div>
       <div class="leftimg">
-        <img :src="arr.picUrl" alt="aa">
+        <img v-lazy="arr.picUrl" alt="aa">
       </div>
     </div>
   </div>
@@ -37,11 +37,13 @@
 </template>
 <script>
   import BScroll from  'better-scroll'
-  import {mapGetters} from 'vuex'
+  import {mapGetters} from  'vuex'
   export default {
-    props:['toarrlist'],
     mounted(){
 
+    },
+    computed:{
+      ...mapGetters(['toarrlist'])
     }
   }
 </script>

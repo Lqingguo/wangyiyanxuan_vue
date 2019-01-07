@@ -24,7 +24,7 @@
           </div>
           <div class="input2">
             <input type="text" placeholder="请输入短信验证码" v-model="code">
-            <div class="input2w" :class="{isrightphone:titles}" @click="reqajax">获取验证码</div>
+            <div class="input2w" @click="reqajax">获取验证码</div>
           </div>
           <div class="titleft">
             遇到问题？
