@@ -64,12 +64,11 @@
             pullUpLoad: {
               threshold:1000
             },
-//            momentumLimitTime:200,
-            momentum:false
+//            momentum:false
           })
         }else {
             this.BScroll.on('pullingUp',()=>{
-                if(this.istrue){
+            if(this.istrue){
             this.istrue = false;
             setTimeout(()=>{
               this.ispage = this.ispage +1;
